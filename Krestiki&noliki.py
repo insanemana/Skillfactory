@@ -1,12 +1,26 @@
 # 1  2  3
 # 4  5  6
 # 7  8  9
+import time
 mas = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 def print_table():
     for i in mas:
             for i2 in i:
                 print(i2, end=' ')
             print()
+def input_num():
+    try:
+        num = int(input('Введите число от 1 до 9:\t'))
+        if num > 9 or num < 0:
+            print('Вы ввели неправильно!')
+            time.sleep(1.5)
+            return input_num()
+    except ValueError as e:
+        print('Вы ввели неправильно!')
+        time.sleep(1.5)
+        return input_num()
+    else:
+        return num
 
 hod_1 = 0
 b = ["крестик"]
@@ -43,7 +57,7 @@ def hod():
     print_table()
     print(f'Ход {a[0]}ов')
     c[0] = a[0]
-    hod_1 = (int(input('введите число от 1 до 9: ')))
+    hod_1 = input_num()
     if hod_1 in mas[0]:
         i = mas[0].index(hod_1)
         mas[0][i] = k
@@ -53,11 +67,9 @@ def hod():
     elif hod_1 in mas[2]:
         i = mas[2].index(hod_1)
         mas[2][i] = k
-    elif hod_1 > 9 or hod_1 < 0:
-        print('введите число от 1 до 9: ')
-        hod()
     else:
-        print('Ячейка уже занята, повторите ход')
+        print('Ячейка уже занята, повторите ход!')
+        time.sleep(1.5)
         hod()
 
 while True:
