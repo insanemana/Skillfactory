@@ -1,9 +1,13 @@
 # 1  2  3
 # 4  5  6
 # 7  8  9
-game0 = [1, 2, 3]
-game1 = [4, 5, 6]
-game2 = [7, 8, 9]
+mas = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+def print_table():
+    for i in mas:
+            for i2 in i:
+                print(i2, end=' ')
+            print()
+
 hod_1 = 0
 b = ["крестик"]
 a = ["нолик"]
@@ -15,40 +19,40 @@ def kuku(func):
     def wrapper():
         func()
 
-        if any([game0[0] == game1[0] == game2[0],
-         game0[1] == game1[1] == game2[1],
-         game0[2] == game1[2] == game2[2],
-         game0[0] == game0[1] == game0[2],
-         game1[0] == game1[1] == game1[2],
-         game2[0] == game2[1] == game2[2],
-         game0[2] == game1[1] == game2[0],
-         game0[0] == game1[1] == game2[2]]):
+        if any([mas[0][0] == mas[1][0] == mas[2][0],
+         mas[0][1] == mas[1][1] == mas[2][1],
+         mas[0][2] == mas[1][2] == mas[2][2],
+         mas[0][0] == mas[0][1] == mas[0][2],
+         mas[1][0] == mas[1][1] == mas[1][2],
+         mas[2][0] == mas[2][1] == mas[2][2],
+         mas[0][2] == mas[1][1] == mas[2][0],
+         mas[0][0] == mas[1][1] == mas[2][2]]):
 
-            print(game0, game1, game2, sep='\n')
+            print_table()
             print('Game Over')
             print(F"Выиграли {c[0]}и!")
             exit()
         elif len(f) == 10:
-            print(game0, game1, game2, sep='\n')
+            print_table()
             print('Ничья!')
             exit()
     return wrapper
 
 @kuku
 def hod():
-    print(game0, game1, game2, sep='\n')
+    print_table()
     print(f'Ход {a[0]}ов')
     c[0] = a[0]
     hod_1 = (int(input('введите число от 1 до 9: ')))
-    if hod_1 in game0:
-        i = game0.index(hod_1)
-        game0[i] = k
-    elif hod_1 in game1:
-        i = game1.index(hod_1)
-        game1[i] = k
-    elif hod_1 in game2:
-        i = game2.index(hod_1)
-        game2[i] = k
+    if hod_1 in mas[0]:
+        i = mas[0].index(hod_1)
+        mas[0][i] = k
+    elif hod_1 in mas[1]:
+        i = mas[1].index(hod_1)
+        mas[1][i] = k
+    elif hod_1 in mas[2]:
+        i = mas[2].index(hod_1)
+        mas[2][i] = k
     elif hod_1 > 9 or hod_1 < 0:
         print('введите число от 1 до 9: ')
         hod()
